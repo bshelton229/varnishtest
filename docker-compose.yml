@@ -1,0 +1,12 @@
+varnish:
+  image: million12/varnish
+  links:
+    - web-app:backend-host
+  volumes:
+    - ./varnish-config:/etc/varnish
+  ports:
+    - "8081:80"
+web-app:
+  image: nginx
+  volumes:
+    - ./html:/usr/share/nginx/html
