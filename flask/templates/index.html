@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<p>From esi: /esi/</p>
+<pre>
+  <esi:include src="/esi/" />
+</pre>
+<p>
+  Index page
+</p>
+<script>
+  $(function() {
+    $.get('/esi/', function(data) {
+      console.log(data);
+    });
+  });
+</script>
+{% endblock %}

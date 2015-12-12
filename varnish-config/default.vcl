@@ -15,7 +15,7 @@ vcl 4.0;
 # Default backend definition. Set this to point to your content server.
 backend default {
     .host = "backend-host";
-    .port = "80";
+    .port = "5000";
 }
 
 sub vcl_recv {
@@ -26,10 +26,7 @@ sub vcl_recv {
 }
 
 sub vcl_backend_response {
-    # Happens after we have read the response headers from the backend.
-    #
-    # Here you clean the response headers, removing silly Set-Cookie headers
-    # and other mistakes your backend does.
+  set beresp.do_esi = true; // Enable ESI
 }
 
 sub vcl_deliver {
@@ -39,4 +36,3 @@ sub vcl_deliver {
         set resp.http.X-Cache = "MISS";
     }
 }
-
